@@ -1,101 +1,92 @@
-import Image from "next/image";
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import Balancer from 'react-wrap-balancer';
+
+function Hero() {
+  return (
+    <div className="relative w-full h-[100dvh] flex items-center justify-center px-4 py-4 sm:p-0 overflow-hidden">
+      {/* Main card */}
+      <motion.div
+        className="relative rounded-2xl p-3 sm:p-4 md:p-8 w-full max-w-2xl mx-auto overflow-hidden select-none"
+        style={{
+          transformStyle: 'preserve-3d',
+          transformPerspective: '1200px',
+        }}
+      >
+        {/* Content */}
+        <div className="relative z-10 flex flex-col items-center gap-3 sm:gap-6 md:gap-8">
+          {/* Logo section */}
+          <motion.div
+            className="relative mb-2 sm:mb-4 md:mb-6 cursor-pointer w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28"
+            initial={{ opacity: 0, x: -60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ 
+              duration: 0.8,
+              ease: [0.23, 1, 0.32, 1]
+            }}
+            style={{ transform: 'translateZ(40px)' }}
+            whileHover={{ 
+              scale: 1.05,
+              transition: { 
+                type: "spring",
+                stiffness: 500,
+                damping: 15,
+                restDelta: 0.001
+              }
+            }}
+            whileTap={{
+              scale: 0.95,
+              rotate: -8,
+              x: 10,
+              transition: {
+                type: "spring",
+                stiffness: 400,
+                damping: 8,
+                mass: 0.8
+              }
+            }}
+          >
+            <Image
+              src="/assets/logo.png"
+              alt="logo"
+              width={112}
+              height={112}
+              className="w-full h-full object-contain relative z-10 select-none touch-none pointer-events-none"
+              priority
+              draggable={false}
+              quality={95}
+            />
+          </motion.div>
+
+          {/* Personal narrative */}
+          <div className="relative z-10 w-full flex flex-col gap-1.5 landscape:gap-2 sm:gap-3 md:gap-4 font-mono text-[10px] landscape:text-[9px] sm:text-sm select-none">
+            <motion.div 
+              className="flex flex-col gap-0.5 landscape:gap-1 sm:gap-2 px-2 sm:px-4 md:px-6 py-1 landscape:py-1 sm:py-2 md:py-3"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              <span className="text-base landscape:text-sm sm:text-xl md:text-2xl lg:text-3xl font-mono tracking-tight relative select-none">
+                digital media + content strategy
+              </span>
+              <span className="text-[rgb(var(--text-primary))] leading-relaxed text-sm landscape:text-xs sm:text-lg md:text-xl lg:text-2xl select-none">
+                crafting engaging narratives and building online communities
+              </span>
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+    <div className="relative min-h-screen">
+      <Hero />
     </div>
   );
 }
