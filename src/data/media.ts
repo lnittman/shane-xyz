@@ -1,5 +1,3 @@
-import { MediaItem } from '@/components/media/MediaCard';
-
 export const media = {
   collider: [
     {

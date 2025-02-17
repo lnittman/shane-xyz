@@ -11,8 +11,8 @@ const Navigation = () => {
   const pathname = usePathname();
 
   const navItems = [
-    { name: 'Home', icon: '/assets/home.png', path: '/' },
     { name: 'Bio', icon: '/assets/bio.png', path: '/bio' },
+    { name: 'Home', icon: '/assets/home.png', path: '/' },
     { name: 'Projects', icon: '/assets/projects.png', path: '/projects' },
   ];
 

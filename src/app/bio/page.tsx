@@ -40,7 +40,7 @@ export default function Bio() {
               <h3 className="text-2xl font-semibold">Content Manager at Phony Texts</h3>
               <p className="italic text-zinc-600">Present Role</p>
               <p className="text-zinc-600">
-                In the fast-paced world of digital storytelling, I've found my stride managing Tiny Texts, 
+                In the fast-paced world of digital storytelling, I&apos;ve found my stride managing Tiny Texts, 
                 a Snapchat powerhouse with over 3.4M followers. Here, storytelling happens through the intimate 
                 lens of text messages, creating narratives that feel authentically personal and irresistibly engaging.
               </p>
@@ -119,7 +119,7 @@ export default function Bio() {
             <h3 className="text-2xl font-semibold">Freelance Email Copywriter at Cappuccino Man</h3>
             <p className="italic text-zinc-600">Previous Role</p>
             <p className="text-zinc-600">
-              As a freelance copywriter, I refined Cappuccino Man's customer communications through strategic 
+              As a freelance copywriter, I refined Cappuccino Man&apos;s customer communications through strategic 
               email template optimization.
             </p>
             <ul className="space-y-2 text-zinc-600">

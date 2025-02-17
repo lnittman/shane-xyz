@@ -26,7 +26,7 @@ const allMedia = Object.entries(media).flatMap(([category, items]) =>
   items.map(item => ({
     ...item,
     category,
-    slug: item.link?.split('/').pop()
+    slug: item.src.split('/').pop()?.replace(/\.[^/.]+$/, '')
   }))
 );
 
