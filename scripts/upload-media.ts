@@ -1,13 +1,44 @@
 import { put } from '@vercel/blob';
-import { readFile } from 'fs/promises';
+import { readFile, mkdir } from 'fs/promises';
 import { join } from 'path';
 import { glob } from 'glob';
+import { exec } from 'child_process';
+import { promisify } from 'util';
+import { existsSync } from 'fs';
 
+const execAsync = promisify(exec);
 const BLOB_TOKEN = "vercel_blob_rw_78JcsYcAwDld2zEI_hKaKV1GMs1x8btTHHc1eZ16zNz0pai";
+const TEMP_DIR = join(process.cwd(), 'temp');
 
 interface UploadResult {
   filename: string;
   url: string;
+}
+
+async function compressVideo(inputPath: string): Promise<string> {
+  // Create temp directory if it doesn't exist
+  if (!existsSync(TEMP_DIR)) {
+    await mkdir(TEMP_DIR);
+  }
+
+  const outputFilename = `compressed_${inputPath.split('/').pop()}`;
+  const outputPath = join(TEMP_DIR, outputFilename);
+
+  try {
+    // Compress video with FFmpeg
+    // -vcodec libx264: Use H.264 codec
+    // -crf 28: Constant Rate Factor (18-28 is a good range, lower means better quality)
+    // -preset faster: Encoding speed preset
+    // -movflags +faststart: Enable fast start for web playback
+    // -vf scale=-2:720: Scale to 720p maintaining aspect ratio
+    await execAsync(`ffmpeg -i "${inputPath}" -vcodec libx264 -crf 28 -preset faster -movflags +faststart -vf scale=-2:720 "${outputPath}"`);
+    
+    return outputPath;
+  } catch (error) {
+    console.error(`Error compressing video ${inputPath}:`, error);
+    // If compression fails, return original path
+    return inputPath;
+  }
 }
 
 async function uploadMedia() {
@@ -31,8 +62,15 @@ async function uploadMedia() {
     const uploads = await Promise.all(
       allFiles.map(async (filepath: string) => {
         const filename = filepath.split('/').pop()!;
-        const buffer = await readFile(filepath);
+        const isVideo = filename.endsWith('.mp4') || filename.endsWith('.mov');
         
+        let fileToUpload = filepath;
+        if (isVideo) {
+          console.log(`Compressing ${filename}...`);
+          fileToUpload = await compressVideo(filepath);
+        }
+        
+        const buffer = await readFile(fileToUpload);
         console.log(`Uploading ${filename}...`);
         
         const blob = await put(filename, buffer, {
@@ -73,6 +111,11 @@ async function uploadMedia() {
 
   } catch (error) {
     console.error('Error uploading media:', error);
+  } finally {
+    // Clean up temp directory if it exists
+    if (existsSync(TEMP_DIR)) {
+      await execAsync(`rm -rf ${TEMP_DIR}`);
+    }
   }
 }
 
