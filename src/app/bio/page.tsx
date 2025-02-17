@@ -25,7 +25,7 @@ export default function Bio() {
       variants={container}
       initial="hidden"
       animate="show"
-      className="space-y-12"
+      className="space-y-12 pt-20 pb-32 px-4 max-w-6xl mx-auto"
     >
       <motion.div variants={item} className="space-y-4">
         <h1 className="text-4xl font-bold">Professional Journey</h1>
@@ -135,37 +135,46 @@ export default function Bio() {
 
       <motion.section variants={item} className="space-y-8">
         <h3 className="text-2xl font-semibold">Skills & Expertise</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="space-y-4">
-            <h4 className="text-xl font-medium">Content Strategy</h4>
-            <ul className="space-y-2 text-zinc-600">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <motion.div 
+            className="bg-black/20 backdrop-blur-lg p-6 rounded-lg border border-white/10"
+            whileHover={{ scale: 1.02 }}
+          >
+            <h4 className="text-xl font-medium mb-4">Content Strategy</h4>
+            <ul className="space-y-2 text-zinc-300">
               <li>• Digital Media Management</li>
               <li>• Content Optimization</li>
               <li>• Audience Growth</li>
               <li>• Performance Analytics</li>
               <li>• Narrative Development</li>
             </ul>
-          </div>
-          <div className="space-y-4">
-            <h4 className="text-xl font-medium">Technical</h4>
-            <ul className="space-y-2 text-zinc-600">
+          </motion.div>
+          <motion.div 
+            className="bg-black/20 backdrop-blur-lg p-6 rounded-lg border border-white/10"
+            whileHover={{ scale: 1.02 }}
+          >
+            <h4 className="text-xl font-medium mb-4">Technical</h4>
+            <ul className="space-y-2 text-zinc-300">
               <li>• SEO Best Practices</li>
               <li>• Content Management Systems</li>
               <li>• Analytics Tools</li>
               <li>• Production Management</li>
               <li>• Email Marketing</li>
             </ul>
-          </div>
-          <div className="space-y-4">
-            <h4 className="text-xl font-medium">Creative</h4>
-            <ul className="space-y-2 text-zinc-600">
+          </motion.div>
+          <motion.div 
+            className="bg-black/20 backdrop-blur-lg p-6 rounded-lg border border-white/10"
+            whileHover={{ scale: 1.02 }}
+          >
+            <h4 className="text-xl font-medium mb-4">Creative</h4>
+            <ul className="space-y-2 text-zinc-300">
               <li>• Copywriting</li>
               <li>• Story Development</li>
               <li>• Brand Voice</li>
               <li>• Creative Direction</li>
               <li>• Visual Storytelling</li>
             </ul>
-          </div>
+          </motion.div>
         </div>
       </motion.section>
     </motion.div>

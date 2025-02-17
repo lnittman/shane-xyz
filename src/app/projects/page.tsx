@@ -15,26 +15,24 @@ export default function Projects() {
   const [activeCategory, setActiveCategory] = useState<string>(categories[0].id);
 
   return (
-    <div className="min-h-full">
-      {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="fixed top-0 inset-x-0 z-10 p-4 bg-gradient-to-b from-black via-black/60 to-transparent"
-      >
-        <h1 className="text-2xl font-bold text-center mb-4">My Work</h1>
-        
-        {/* Category Tabs */}
-        <div className="flex justify-center gap-2 overflow-x-auto hide-scrollbar">
+    <div className="min-h-full pt-20 pb-32">
+      {/* Category Switcher */}
+      <div className="flex justify-center mb-8">
+        <motion.div 
+          className="flex items-center gap-2 bg-black/20 backdrop-blur-lg p-2 rounded-lg border border-white/10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           {categories.map((category) => (
             <motion.button
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
               className={`
-                px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm
+                px-4 py-2 rounded-lg text-sm font-medium transition-all
                 ${activeCategory === category.id
                   ? 'bg-white text-black'
-                  : 'bg-white/10 text-white hover:bg-white/20'
+                  : 'text-white hover:bg-white/10'
                 }
               `}
               whileHover={{ scale: 1.05 }}
@@ -44,28 +42,26 @@ export default function Projects() {
               {category.label}
             </motion.button>
           ))}
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
 
       {/* Stories Grid */}
-      <div className="pt-32 min-h-full">
-        <div className="space-y-4 p-4">
-          {media[activeCategory as keyof typeof media].map((item) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="snap-start snap-always"
-            >
-              <MediaCard
-                item={item}
-                type={activeCategory === 'collider' ? 'image' : 'video'}
-                size="medium"
-              />
-            </motion.div>
-          ))}
-        </div>
+      <div className="px-4 space-y-4">
+        {media[activeCategory as keyof typeof media].map((item) => (
+          <motion.div
+            key={item.title}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="snap-start snap-always"
+          >
+            <MediaCard
+              item={item}
+              type={activeCategory === 'collider' ? 'image' : 'video'}
+              size="medium"
+            />
+          </motion.div>
+        ))}
       </div>
     </div>
   );

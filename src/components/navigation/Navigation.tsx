@@ -19,7 +19,7 @@ const Navigation = () => {
   return (
     <nav className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
       <motion.div 
-        className="flex items-center gap-3 bg-black/20 backdrop-blur-lg p-2 rounded-lg border border-white/10"
+        className="flex items-center gap-3 bg-black/40 backdrop-blur-lg p-2 rounded-lg border border-white/10"
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
@@ -32,7 +32,13 @@ const Navigation = () => {
                   <Button
                     variant={pathname === item.path ? "secondary" : "ghost"}
                     size="icon"
-                    className="relative w-10 h-10 rounded-lg transition-all hover:bg-white/10 data-[state=open]:bg-white/10"
+                    className={`
+                      relative w-10 h-10 rounded-lg transition-all
+                      ${pathname === item.path 
+                        ? 'bg-white text-black hover:bg-white/90' 
+                        : 'text-white hover:bg-white/10'
+                      }
+                    `}
                   >
                     <Image
                       src={item.icon}
@@ -44,7 +50,10 @@ const Navigation = () => {
                   </Button>
                 </Link>
               </TooltipTrigger>
-              <TooltipContent side="top" className="bg-black/80 border-white/10">
+              <TooltipContent 
+                side="top" 
+                className="bg-black/80 border-white/10 text-white"
+              >
                 <p>{item.name}</p>
               </TooltipContent>
             </Tooltip>
