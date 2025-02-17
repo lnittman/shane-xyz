@@ -137,42 +137,45 @@ export default function Bio() {
         <h3 className="text-2xl font-semibold">Skills & Expertise</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <motion.div 
-            className="bg-black/20 backdrop-blur-lg p-6 rounded-lg border border-white/10"
+            className="p-6 rounded-lg border border-white/10 hover:border-white/20 transition-colors"
             whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.2 }}
           >
-            <h4 className="text-xl font-medium mb-4">Content Strategy</h4>
-            <ul className="space-y-2 text-zinc-300">
-              <li>• Digital Media Management</li>
-              <li>• Content Optimization</li>
-              <li>• Audience Growth</li>
-              <li>• Performance Analytics</li>
-              <li>• Narrative Development</li>
+            <h4 className="text-xl font-light mb-4 text-white">Content Strategy</h4>
+            <ul className="space-y-2">
+              <li className="text-zinc-300">Digital Media Management</li>
+              <li className="text-zinc-300">Audience Development</li>
+              <li className="text-zinc-300">Analytics Growth</li>
+              <li className="text-zinc-300">Performance Analytics</li>
+              <li className="text-zinc-300">Narrative Development</li>
             </ul>
           </motion.div>
           <motion.div 
-            className="bg-black/20 backdrop-blur-lg p-6 rounded-lg border border-white/10"
+            className="p-6 rounded-lg border border-white/10 hover:border-white/20 transition-colors"
             whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.2 }}
           >
-            <h4 className="text-xl font-medium mb-4">Technical</h4>
-            <ul className="space-y-2 text-zinc-300">
-              <li>• SEO Best Practices</li>
-              <li>• Content Management Systems</li>
-              <li>• Analytics Tools</li>
-              <li>• Production Management</li>
-              <li>• Email Marketing</li>
+            <h4 className="text-xl font-light mb-4 text-white">Technical</h4>
+            <ul className="space-y-2">
+              <li className="text-zinc-300">SEO Best Practices</li>
+              <li className="text-zinc-300">Content Management Systems</li>
+              <li className="text-zinc-300">Analytics Tools</li>
+              <li className="text-zinc-300">Production Management</li>
+              <li className="text-zinc-300">Social Platforms</li>
             </ul>
           </motion.div>
           <motion.div 
-            className="bg-black/20 backdrop-blur-lg p-6 rounded-lg border border-white/10"
+            className="p-6 rounded-lg border border-white/10 hover:border-white/20 transition-colors"
             whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.2 }}
           >
-            <h4 className="text-xl font-medium mb-4">Creative</h4>
-            <ul className="space-y-2 text-zinc-300">
-              <li>• Copywriting</li>
-              <li>• Story Development</li>
-              <li>• Brand Voice</li>
-              <li>• Creative Direction</li>
-              <li>• Visual Storytelling</li>
+            <h4 className="text-xl font-light mb-4 text-white">Creative</h4>
+            <ul className="space-y-2">
+              <li className="text-zinc-300">Copywriting</li>
+              <li className="text-zinc-300">Art Direction</li>
+              <li className="text-zinc-300">Brand Voice</li>
+              <li className="text-zinc-300">Creative Direction</li>
+              <li className="text-zinc-300">Video Storytelling</li>
             </ul>
           </motion.div>
         </div>

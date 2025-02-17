@@ -16,8 +16,9 @@ export async function POST(request: Request) {
 
     return NextResponse.json(blob);
   } catch (error) {
+    console.error('Error uploading to blob storage:', error);
     return NextResponse.json(
-      { error: 'Error uploading to blob storage' },
+      { error: error instanceof Error ? error.message : 'Error uploading to blob storage' },
       { status: 500 }
     );
   }

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 
 const Navigation = () => {
   const pathname = usePathname();
@@ -52,9 +53,11 @@ const Navigation = () => {
               </TooltipTrigger>
               <TooltipContent 
                 side="top" 
-                className="bg-black/80 border-white/10 text-white"
+                className="bg-black/80 border border-white/10 text-white"
+                sideOffset={8}
               >
-                <p>{item.name}</p>
+                {item.name}
+                <TooltipPrimitive.Arrow className="fill-black/80" />
               </TooltipContent>
             </Tooltip>
           ))}
